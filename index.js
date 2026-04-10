@@ -35,6 +35,24 @@ const riesgo_tres_medio = 2.436;
 const riesgo_cuatro_alto = 4.350;
 const riesgo_cinco_maximo = 6.960;
 
+// Lógica de cálculo de nómina
+// 1. Calcular El Total Devengado es salario + comisiones = horas extra
+// El subsidio de transporte no entra en el cálculo de IBC 
+let totalDevengado = salario + comisiones + total_horas_extras;
+// Cálculo del IBC
+let ibc = totalDevengado * 0.70;
+
+// Salud y pensión, que es el 4% de cada uno sobre el IBC
+let salud = ibc * 0.04;
+let pension = ibc * 0.04;
+
+// Fondo salario pensional, se paga 1% adicional si el IBC >= 4 SMMLV
+// Usamos el operador ? para escribir if-else condición ? expresión_si_es_verdadero : expresión_si_es_falso, entonces 
+// si el IBC es mayor o igual a cuatro salarios mínimos, entonces se calcula el 1% del IBC; de lo contrario, su valor es 0
+let fondoSolidaridad = (ibc >= (4 * salario_minimo)) ? (ibc * 0.01) : 0;
+
+
+
 
 
 
