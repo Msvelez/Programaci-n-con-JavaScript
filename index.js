@@ -46,9 +46,15 @@ let ibc = totalDevengado * 0.70;
 let salud = ibc * 0.04;
 let pension = ibc * 0.04;
 
+// Validación de perfil
+// Regla a: Menor de 18 años
+if (edad < edad_minima) {
+    console.log("No es posible continuar: El usuario es menor de edad.");
+}
+
 // Fondo salario pensional, se paga 1% adicional si el IBC >= 4 SMMLV
 // Usamos el operador ? para escribir if-else condición ? expresión_si_es_verdadero : expresión_si_es_falso, entonces 
-// si el IBC es mayor o igual a cuatro salarios mínimos, entonces se calcula el 1% del IBC; de lo contrario, su valor es 0
+// si el IBC es mayor o igual a cuatro salarios mínimos, entonces se calcula el 1% del IBC, de lo contrario, su valor es 0
 let fondoSolidaridad = (ibc >= (4 * salario_minimo)) ? (ibc * 0.01) : 0;
 
 
