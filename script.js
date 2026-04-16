@@ -84,10 +84,4 @@ function validarPerfil(edad) {
     if (edad < 18) {
         return { continuar: false, mensaje: "Menor de edad" };
 
-
-
-
-
-
-
-
+    }
