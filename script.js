@@ -47,17 +47,42 @@ let salud = ibc * 0.04;
 let pension = ibc * 0.04;
 
 // Validación de perfil
-// Regla a: Menor de 18 años
-if (edad < edad_minima) {
+// Regla a: Menor de edad
+if (edad < 18) {
     console.log("No es posible continuar: El usuario es menor de edad.");
+
 }
+
+// Regla b: Menor de 25
+else if (edad < 25) {
+    console.log("Usuario beneficiario por cotizante. No se puede continuar al siguiente paso.");
+
+}
+
+//Regla c: 60 años o más
+else if (edad>= 60) {
+    console.log("Perfil: Pensionado. Solo se calculará el pago de la pensión sobre la mesada pensional.")
+
+}
+
+//Regla d: No cumple ninguna de las anteriores (Adulto entre 25 y 59 años)
+else {
+console.log("Validación exitosa: Puede continuar con el siguiente paso del proceso.");
+// Aquí dentro iría el resto de tus cálculos de obligaciones
+    // (ARL, Salud, Pensión, etc.)
+}
+
+
 
 // Fondo salario pensional, se paga 1% adicional si el IBC >= 4 SMMLV
 // Usamos el operador ? para escribir if-else condición ? expresión_si_es_verdadero : expresión_si_es_falso, entonces 
 // si el IBC es mayor o igual a cuatro salarios mínimos, entonces se calcula el 1% del IBC, de lo contrario, su valor es 0
-let fondoSolidaridad = (ibc >= (4 * salario_minimo)) ? (ibc * 0.01) : 0;
+let fondoSolidaridad = (ibc <= (4 * salario_minimo)) ? (ibc * 0.01) : 0;
 
-
+// Funciones
+function validarPerfil(edad) {
+    if (edad < 18) {
+        return { continuar: false, mensaje: "Menor de edad" };
 
 
 
