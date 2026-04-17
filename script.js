@@ -20,7 +20,7 @@ const edad_jubilacion = 60;
 // Valores y Tarifas en Colombia para 2026
 const salario_minimo = 1750905;
 const salario_minimo_integral_vigente = 22761765;
-const subsidio_transporte = 249.095;
+const subsidio_transporte = 249095;
 const uvt = 52.37;
 
 // Ingreso de información salarial
@@ -38,7 +38,7 @@ const riesgo_cinco_maximo = 6.960;
 // Lógica de cálculo de nómina
 // 1. Calcular El Total Devengado es salario + comisiones = horas extra
 // El subsidio de transporte no entra en el cálculo de IBC 
-let totalDevengado = salario + comisiones + total_horas_extras;
+let totalDevengado = salario + comisiones + total_horas_extra;
 // Cálculo del IBC
 let ibc = totalDevengado * 0.70;
 
@@ -83,5 +83,43 @@ let fondoSolidaridad = (ibc <= (4 * salario_minimo)) ? (ibc * 0.01) : 0;
 function validarPerfil(edad) {
     if (edad < 18) {
         return { continuar: false, mensaje: "Menor de edad" };
-
+    } else if (edad < 25) {
+        return { continuar: false, mensaje: "Usuario beneficiario por cotizante" };
+    } else if (edad >= 60) {
+        return { continuar: true, tipo: "pensionado" };
     }
+    return { continuar: true, tipo: "empleado" };
+}
+
+ // El IBC no puede ser inferior a 1 SMMLV
+function calcularIBC(totalDevengado) {
+    let ibc = totalDevengado * 0.70;
+    return ibc;
+}
+
+
+// Función para Prestaciones de Ley
+function calcularDeducciones(ibc) {
+    return {
+        salud: ibc * 0.04,
+        pension: ibc * 0.04
+    };
+}
+
+// Función para calcular el pago de ARL basado en el nivel de riesgo
+function calcularARL(ibc, nivelRiesgo) {
+    const riesgo = nivelesRiesgo.find(r => r.nivel === nivelRiesgo);
+    return riesgo ? ibc * riesgo.tarifa : 0;
+}
+
+// Constante con un array de objetos para los niveles de riesgo
+const nivelesRiesgo = [
+    { nivel: 1, nombre: "Riesgo Mínimo", tarifa: 0.522 },
+    { nivel: 2, nombre: "Riesgo Bajo",   tarifa: 1.044 },
+    { nivel: 3, nombre: "Riesgo Medio",  tarifa: 2.436 },
+    { nivel: 4, nombre: "Riesgo Alto",   tarifa: 4.350 },
+    { nivel: 5, nombre: "Riesgo Máximo", tarifa: 6.960 }
+];
+
+
+
