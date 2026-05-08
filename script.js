@@ -1,16 +1,19 @@
 
 // Ingreso de información básica 
-let nombreCompleto = "";
-let edad = 0;
-let tipoDocumento = "";
-let numeroDocumento = "";
+let nombreCompleto = document.getElementBy(nombreCompleto).value;
+let edad = document.getElementBy(edad).value;
+let tipoDocumento = document.getElementBy(tipodocumento).value;
+let numeroDocumento = document.getElementBy(numerodedocumento).value;
 
 // Variables de entrada
-let salario = 0;
-let mesadaPensional = 0;
+let salario = document.getElementBy(salario).value;
+let mesadaPensional = document.getElementBy(mesadaPensional).value;
 let clasificacion = ""; 
 let pagoPension = 0;
 let prestacionesLey = 0;
+let comisiones = document.getElementBy(comisiones).value;
+let horasExtra = document.getElementBy(horasExtra).value;
+let nivelRiesgo = document.getElementBy(nivelRiesgo).value;
 
 // Valores fijos
 const edad_minima = 18;
