@@ -1,62 +1,167 @@
 <!DOCTYPE html>
- <html lang="es"> 
-    <head> 
-        <meta charset="UTF-8">
-         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-         <title>Título</title>
-         </head> 
-         <body>
-             <script src="script.js"> </script> 
-             
-  
-<form action="." class="form">
-  <div class="form">
-    <label for="nombreCompleto">Digite su nombre completo: </label>
-    <input type="nombre" name="nombre" id="nombreCompleto" required />
-  </div>
-  <div class="form">
-    <label for="edad">Digite su edad: </label>
-    <input type="numero" name="edad" id="edad" required />
-  </div>
-  <div class="form-example">
-    <input id="submit" value="Subscribe!" />
-  </div>
-<div class="form">
-<label for="tipoDocumento">Seleccione su tipo de documento:</label>
-<input type="tipodedocumento" name="tipodedocumento" id="tipodedocumento" required />
-<select name="tipodocumento" id="tipodocumento">
-  <option value="">Porfavor selecciona una opción</option>
-  <option value="ceduladeciudadania">Cédula de ciudadanía</option>
-  <option value="tarjetadeidentidad">Tarjeta de identidad</option>
-  <option value="registrocivil">Registro civil</option>
-  <option value="ceduladeextranjeria">Cédula de extranjería</option>
-</select>
-</div>
-<div class="form">
-    <label for="numeroDocumento">Digite su numero de documento: </label>
-    <input type="numero" name="numerodedocumento" id="numerodedocumento" required />
-  </div>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Pago de Prestaciones Laborales</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Simulador de Pago de Prestaciones Laborales</h1>
+            <p>Universidad el Bosque - Programa de Creación Digital</p>
+        </header>
 
-  <div class="form">
-    <label for="salario">Digite su numero de documento: </label>
-    <input type="numero" name="salario" id="salario" required />
-  <div class="form">
-    <label for="comisiones">Digite su numero de documento: </label>
-    <input type="numero" name="comisiones" id="comisiones" required />
-  </div>
-  <div class="form">
-    <label for="horasExtra">Digite su numero de documento: </label>
-    <input type="numero" name="horasExtra" id="horasExtra"/>
-  <div class="form">
-    <label for="nivelRiesgo">Digite su numero de documento: </label>
-    <input type="string" name="nivelRiesgo" id="nivelRiesgo" required/>
-  <div class="form">
-    <label for="mesadaPensional">Digite su numero de documento: </label>
-    <input type="numero" name="mesadaPensional" id="mesadaPensional"/>
-  
+        <main>
+            <!-- PASO 1: INFORMACIÓN BÁSICA -->
+            <section class="paso" id="paso1">
+                <h2>Paso 1: Información Básica</h2>
+                <form id="formPaso1">
+                    <div class="form-group">
+                        <label for="nombreCompleto">Nombre Completo:</label>
+                        <input type="text" id="nombreCompleto" name="nombreCompleto" required>
+                    </div>
 
-</form>
+                    <div class="form-group">
+                        <label for="edad">Edad (años):</label>
+                        <input type="number" id="edad" name="edad" required min="0" max="120">
+                    </div>
 
+                    <div class="form-group">
+                        <label for="tipoDocumento">Tipo de Documento:</label>
+                        <select id="tipoDocumento" name="tipoDocumento" required>
+                            <option value="">Selecciona una opción</option>
+                            <option value="RC">RC - Registro Civil de Nacimiento</option>
+                            <option value="TI">TI - Tarjeta de Identidad</option>
+                            <option value="CC">CC - Cédula de Ciudadanía</option>
+                            <option value="CE">CE - Cédula de Extranjería</option>
+                            <option value="PP">PP - Pasaporte</option>
+                        </select>
+                    </div>
 
-    </body> 
-    </html>
+                    <div class="form-group">
+                        <label for="numeroDocumento">Número de Documento (sin puntos ni comas):</label>
+                        <input type="text" id="numeroDocumento" name="numeroDocumento" required pattern="[0-9]+">
+                    </div>
+
+                    <button type="button" class="btn-primary" onclick="validarPaso1()">Continuar</button>
+                </form>
+            </section>
+
+            <!-- PASO 2: VALIDACIÓN DE PERFIL -->
+            <section class="paso" id="paso2" style="display: none;">
+                <h2>Paso 2: Validación de Perfil</h2>
+                <div id="mensajePerfil" class="mensaje"></div>
+                
+                <!-- FORMULARIO PARA ADULTOS ENTRE 25 Y 59 AÑOS -->
+                <form id="formPaso2Adulto" style="display: none;">
+                    <h3>Información Salarial</h3>
+                    
+                    <div class="form-group">
+                        <label for="salario">Salario (COP, sin puntos ni comas):</label>
+                        <input type="number" id="salario" name="salario" required min="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comisiones">Comisiones (COP, sin puntos ni comas):</label>
+                        <input type="number" id="comisiones" name="comisiones" value="0" min="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="horasExtra">Total de Horas Extra (COP, sin puntos ni comas):</label>
+                        <input type="number" id="horasExtra" name="horasExtra" value="0" min="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nivelRiesgo">Clasificación de Nivel de Riesgo:</label>
+                        <select id="nivelRiesgo" name="nivelRiesgo" required>
+                            <option value="">Selecciona una opción</option>
+                            <option value="1">Riesgo I (Mínimo) - 0.522%</option>
+                            <option value="2">Riesgo II (Bajo) - 1.044%</option>
+                            <option value="3">Riesgo III (Medio) - 2.436%</option>
+                            <option value="4">Riesgo IV (Alto) - 4.350%</option>
+                            <option value="5">Riesgo V (Máximo) - 6.960%</option>
+                        </select>
+                    </div>
+
+                    <button type="button" class="btn-primary" onclick="calcularOblaciones()">Calcular Obligaciones</button>
+                    <button type="button" class="btn-secondary" onclick="volverPaso1()">Atrás</button>
+                </form>
+
+                <!-- FORMULARIO PARA PENSIONADOS (>= 60 AÑOS) -->
+                <form id="formPaso2Pensionado" style="display: none;">
+                    <h3>Información de Mesada Pensional</h3>
+                    
+                    <div class="form-group">
+                        <label for="mesadaPensional">Mesada Pensional (COP, sin puntos ni comas):</label>
+                        <input type="number" id="mesadaPensional" name="mesadaPensional" required min="0">
+                    </div>
+
+                    <button type="button" class="btn-primary" onclick="calcularPensionado()">Calcular Pensión</button>
+                    <button type="button" class="btn-secondary" onclick="volverPaso1()">Atrás</button>
+                </form>
+            </section>
+
+            <!-- PASO 3: RESULTADOS -->
+            <section class="paso" id="paso3" style="display: none;">
+                <h2>Paso 3: Resultados del Cálculo</h2>
+                
+                <div class="resultado-container">
+                    <div class="resultado-item">
+                        <h3>Información Personal</h3>
+                        <p><strong>Nombre:</strong> <span id="resNombre"></span></p>
+                        <p><strong>Edad:</strong> <span id="resEdad"></span> años</p>
+                        <p><strong>Documento:</strong> <span id="resDocumento"></span></p>
+                        <p><strong>Perfil:</strong> <span id="resPerfil"></span></p>
+                    </div>
+
+                    <div class="resultado-item">
+                        <h3>Ingresos</h3>
+                        <p><strong>Salario Base:</strong> $<span id="resSalario"></span></p>
+                        <p><strong>Comisiones:</strong> $<span id="resComisiones"></span></p>
+                        <p><strong>Horas Extra:</strong> $<span id="resHorasExtra"></span></p>
+                        <p><strong>Auxilio de Transporte:</strong> $<span id="resAuxilioTransporte"></span></p>
+                        <p><strong>Total Devengado:</strong> $<span id="resTotalDevengado"></span></p>
+                        <p><strong>Ingreso Base de Cotización (IBC):</strong> $<span id="resIBC"></span></p>
+                    </div>
+
+                    <div class="resultado-item">
+                        <h3>Deducciones</h3>
+                        <p><strong>Salud (4% IBC):</strong> $<span id="resSalud"></span></p>
+                        <p><strong>Pensión (4% IBC):</strong> $<span id="resPension"></span></p>
+                        <p><strong>Fondo de Solidaridad Pensional:</strong> $<span id="resFondoSolidaridad"></span></p>
+                        <p><strong>ARL:</strong> $<span id="resARL"></span></p>
+                        <p><strong>Retención en la Fuente:</strong> $<span id="resRetencion"></span></p>
+                        <p><strong id="labelTotalDeducciones">Total Deducciones:</strong> $<span id="resTotalDeducciones"></span></p>
+                    </div>
+
+                    <div class="resultado-item resultado-total">
+                        <h3>Resumen Final</h3>
+                        <p><strong>Total a Recibir:</strong> $<span id="resTotal"></span></p>
+                    </div>
+
+                    <div class="desglose-formula">
+                        <h3>Desglose de Cálculos</h3>
+                        <p id="desgloseFormula"></p>
+                    </div>
+                </div>
+
+                <div class="botones-finales">
+                    <button type="button" class="btn-primary" onclick="nuevoCalculo()">Nuevo Cálculo</button>
+                    <button type="button" class="btn-secondary" onclick="volverPaso1()">Volver al Inicio</button>
+                </div>
+            </section>
+
+            <!-- MENSAJES DE ERROR Y VALIDACIÓN -->
+            <section id="seccionMensajes"></section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 - Simulador de Nómina | Universidad el Bosque</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
