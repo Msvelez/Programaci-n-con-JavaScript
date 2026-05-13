@@ -1,6 +1,4 @@
-/* ============================================
-   ESTILOS GENERALES
-   ============================================ */
+/* ESTILOS GENERALES */
 
 * {
     margin: 0;
@@ -26,9 +24,7 @@ body {
     overflow: hidden;
 }
 
-/* ============================================
-   HEADER
-   ============================================ */
+/* HEADER */
 
 header {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -48,9 +44,7 @@ header p {
     opacity: 0.9;
 }
 
-/* ============================================
-   MAIN CONTENT
-   ============================================ */
+/* CONTENIDO PRINCIPAL*/
 
 main {
     padding: 40px;
@@ -71,9 +65,7 @@ main {
     }
 }
 
-/* ============================================
-   TÍTULOS Y SECCIONES
-   ============================================ */
+/* TÍTULOS Y SECCIONES */
 
 h2 {
     color: #667eea;
@@ -90,9 +82,7 @@ h3 {
     font-size: 1.3em;
 }
 
-/* ============================================
-   FORMULARIOS
-   ============================================ */
+/* FORMULARIOS */
 
 .form-group {
     margin-bottom: 20px;
@@ -133,9 +123,7 @@ input:invalid {
     border-color: #e74c3c;
 }
 
-/* ============================================
-   BOTONES
-   ============================================ */
+/*  BOTONES */
 
 .btn-primary,
 .btn-secondary {
@@ -174,9 +162,7 @@ input:invalid {
     transform: translateY(-2px);
 }
 
-/* ============================================
-   MENSAJES
-   ============================================ */
+/* MENSAJES */
 
 .mensaje {
     padding: 20px;
@@ -204,9 +190,7 @@ input:invalid {
     border-left: 4px solid #27ae60;
 }
 
-/* ============================================
-   RESULTADOS
-   ============================================ */
+/* RESULTADOS */
 
 .resultado-container {
     display: grid;
@@ -282,9 +266,7 @@ input:invalid {
     color: #333;
 }
 
-/* ============================================
-   BOTONES FINALES
-   ============================================ */
+/* BOTONES FINALES */
 
 .botones-finales {
     display: flex;
@@ -295,9 +277,7 @@ input:invalid {
     border-top: 2px solid #ecf0f1;
 }
 
-/* ============================================
-   FOOTER
-   ============================================ */
+/* FOOTER */
 
 footer {
     background: #34495e;
@@ -307,9 +287,7 @@ footer {
     font-size: 0.9em;
 }
 
-/* ============================================
-   RESPONSIVE
-   ============================================ */
+/* RESPONSIVE */
 
 @media (max-width: 768px) {
     .container {
