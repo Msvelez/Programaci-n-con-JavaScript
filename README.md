@@ -201,7 +201,7 @@ Si encuentras problemas:
 1. Abre la consola del navegador (F12)
 2. Verifica los mensajes de error
 3. Asegúrate de que todos los archivos están en la misma carpeta
-4. Intenta con `index_completo.html`
+4. Intenta con `index.html`
 
 ## 📄 Licencia
 
